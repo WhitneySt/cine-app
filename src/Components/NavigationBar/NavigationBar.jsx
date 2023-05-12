@@ -2,6 +2,8 @@ import React from "react";
 import logo from "./../../assets/logo.png";
 import { NavLink } from "react-router-dom";
 import './navigationBar.scss';
+import Formulario from "../Formulario/Formulario";
+
 
 const NavigationBar = () => {
   return (
@@ -12,7 +14,8 @@ const NavigationBar = () => {
         </figure>
         <NavLink className={"navBar__link"} to="/">Cartelera</NavLink>
       </section>
-      <form>
+      <Formulario/>
+      {/* <form className="navBar__search">
         <div>
           <label htmlFor="">Ubicación</label>
           <select name="ubicacion">
@@ -29,7 +32,7 @@ const NavigationBar = () => {
           <label htmlFor="">Fecha</label>
           <input type="date"/>
         </div>
-      </form>
+      </form> */}
     </nav>
   );
 };
