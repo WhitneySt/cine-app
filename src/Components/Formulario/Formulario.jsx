@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { getCiudades } from "../../services/getCiudades";
+import { getFechasFunciones } from "../../services/getFechasFunciones";
 // import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 // import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 // import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -21,6 +22,8 @@ export default function Formulario() {
   const [date, setDate] = useState("");
 
   const [cities, setCities] = useState([]);
+  const [teatros, setTeatros] = useState([]);
+  const [fechas, setFechas] = useState([]);
 
   useEffect(() => {
     getCiudades()
@@ -30,10 +33,24 @@ export default function Formulario() {
         }
       })
       .catch((error) => console.log(error));
-  }, [cities]);
+
+    getFechasFunciones()
+      .then((response) => {
+        setFechas(response);
+      })
+      .catch((error) => console.log(error));
+  }, [cities, teatros]);
 
   const handleChangeUbication = (event) => {
-    setUbication(event.target.value);
+    const cinema = event.target.value;
+    setUbication(cinema);
+    const cinemasCity = cities.length
+      ? cities.find((item) => item.id === cinema)
+      : {};
+    const theater = Object.entries(cinemasCity).length
+      ? cinemasCity?.teatros
+      : [];
+    setTeatros(theater);
   };
   const handleChangeCines = (event) => {
     setCines(event.target.value);
@@ -48,6 +65,7 @@ export default function Formulario() {
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Ubicación</InputLabel>
         <Select
+          name="ubications"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={ubication}
@@ -67,6 +85,7 @@ export default function Formulario() {
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Cines cercanos</InputLabel>
           <Select
+            name="cines"
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={cines}
@@ -74,9 +93,12 @@ export default function Formulario() {
             onChange={handleChangeCines}
             sx={stylesInputs}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {teatros &&
+              teatros.map((element) => (
+                <MenuItem key={element.id} value={element.id}>
+                  {element.name}
+                </MenuItem>
+              ))}
           </Select>
         </FormControl>
       )}
@@ -84,6 +106,7 @@ export default function Formulario() {
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Fecha</InputLabel>
           <Select
+            name="date"
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={date}
@@ -91,9 +114,12 @@ export default function Formulario() {
             onChange={handleChangeDate}
             sx={stylesInputs}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {fechas.length &&
+              fechas.map((item, index) => (
+                <MenuItem key={index} value={item}>
+                  {item}
+                </MenuItem>
+              ))}
           </Select>
           {/* <InputLabel id="demo-simple-select-label">Mobile variant</InputLabel> */}
 
