@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -6,6 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { getCiudades } from "../../services/getCiudades";
 import { getFechasFunciones } from "../../services/getFechasFunciones";
+import { searchParamsContext } from "../../Routes/AppRouter";
 // import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 // import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 // import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -17,13 +18,16 @@ const stylesInputs = {
 };
 
 export default function Formulario() {
-  const [ubication, setUbication] = useState("");
-  const [cines, setCines] = useState("");
-  const [date, setDate] = useState("");
+  // const [ubication, setUbication] = useState("");
+  // const [cines, setCines] = useState("");
+  // const [date, setDate] = useState("");
 
   const [cities, setCities] = useState([]);
   const [teatros, setTeatros] = useState([]);
   const [fechas, setFechas] = useState([]);
+
+  const { ubication, setUbication, cines, setCines, date, setDate} =
+    useContext(searchParamsContext);
 
   useEffect(() => {
     getCiudades()

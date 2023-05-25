@@ -14,3 +14,26 @@ export const getCiudades = async () => {
         return [];
     }
 }
+
+export const getCityCinema = async(idCity, idTeatro) => {
+    try {
+        const { data } = await axios.get(
+          `${API_FAKE}${endpointCiudades}?id=${idCity}`
+        );
+        
+
+        const theaters = data[0].teatros.find(item => item.id === idTeatro);
+        console.log(theaters);
+
+        const infoFunciones = {
+          city: data[0].name,
+          cinema: theaters.name,
+        };
+
+        return infoFunciones;
+        
+    } catch (error) {
+        console.log(error);
+        return {};
+    }
+}
