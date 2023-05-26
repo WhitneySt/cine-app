@@ -46,7 +46,7 @@ const Home = ({ movieList }) => {
       
       Swal.fire("Good job!", "Has seleccionado un función!", "success").then(() => {
         sessionStorage.setItem("searchParams", JSON.stringify(params));
-        navigate(`/${titleMovie}`);
+        navigate(`/${idMovie}`);
       });
     }
   };

@@ -6,4 +6,4 @@ const SeleccionBoletos = () => {
   )
 }
 
-export default SeleccionBoletos
+export default SeleccionBoletos;

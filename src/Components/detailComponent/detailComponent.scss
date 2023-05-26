@@ -1,0 +1,9 @@
+.button{
+    border: 2px solid blue;
+    color: blue;
+    padding: 5px;
+    &--selected{
+        background-color: blue;
+        color: #fff;
+    }
+}
