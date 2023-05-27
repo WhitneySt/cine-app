@@ -14,10 +14,29 @@ import DetailsMovie from "../Components/detailsMovie/DetailsMovie";
 
 export const searchParamsContext = createContext({});
 
+const boletos = [
+  {
+    name: "Adultos",
+    price: 18000,
+    cantidad: 0,
+  },
+  {
+    name: "Niños",
+    price: 9000,
+    cantidad: 0,
+  },
+  {
+    name: "Adultos mayores",
+    price: 9000,
+    cantidad: 0,
+  },
+];
+
 const AppRouter = () => {
   const [movies, setMovies] = useState([]);
 
-    const [details, setDetails] = useState({});
+  const [details, setDetails] = useState({});
+  const [tickets, setTickets] = useState(boletos);
 
 
   //Datos del formularios y de búsquedas
@@ -75,13 +94,15 @@ const AppRouter = () => {
             setFilters,
             details,
             setDetails,
+            tickets,
+            setTickets,
           }}
         >
           <Routes>
             <Route path={"/"} element={<Layout />}>
               <Route index element={<Home movieList={movies} />} />
               <Route path={":pelicula"} element={<DetalleFuncion />}>
-                <Route index element={ <DetailsMovie/>} />
+                <Route index element={<DetailsMovie />} />
                 <Route path="boletos" element={<SeleccionBoletos />} />
                 <Route path="asientos" element={<SeleccionAsientos />} />
                 <Route path="pagos" element={<PagoBoletos />} />

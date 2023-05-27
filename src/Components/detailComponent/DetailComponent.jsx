@@ -16,6 +16,8 @@ const DetailComponent = () => {
 
   const [selectedButton, setSelectedButton] = useState({});
 
+  const [showFirstDetails, setShowFirstDetails] = useState(true);
+
   // const [cantidadFunciones, setCantidadFunciones] = useState(0);
 
   // const memoizarCantidadFunciones = useCallback(() => {
@@ -62,7 +64,8 @@ const DetailComponent = () => {
   };
 
   return (
-    <div>
+    <>{
+      showFirstDetails?(<div>
       <h3>Horarios disponibles -{filters.date}</h3>
       <p>Elige el horario que prefieras</p>
       <h4>{details?.cinema}</h4>
@@ -76,11 +79,16 @@ const DetailComponent = () => {
 
         onClick={() => {
           navigate(`boletos`);
+          setShowFirstDetails(false);
         }}
       >
         Seleccionar Boletos
       </button>
-    </div>
+      </div>) : (
+          <></>
+    )
+    }</>
+    
   );
 };
 
