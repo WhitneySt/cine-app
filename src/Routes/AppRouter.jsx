@@ -34,6 +34,7 @@ const boletos = [
 
 const AppRouter = () => {
   const [movies, setMovies] = useState([]);
+  const [movieInfo, setMovieInfo] = useState({});
 
   const [details, setDetails] = useState({});
   const [tickets, setTickets] = useState(boletos);
@@ -96,6 +97,8 @@ const AppRouter = () => {
             setDetails,
             tickets,
             setTickets,
+            movieInfo,
+            setMovieInfo,
           }}
         >
           <Routes>

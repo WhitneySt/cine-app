@@ -3,10 +3,9 @@ import { searchParamsContext } from "../../Routes/AppRouter";
 import { getMovie, getVideoMovie } from '../../services/getMovies';
 
 const DetailsMovie = () => {
-    const { filters } =
-        useContext(searchParamsContext);
+    const { filters, movieInfo, setMovieInfo } = useContext(searchParamsContext);
     
-    const [movieInfo, setMovieInfo] = useState({});
+    
     const [videoMovie, setVideoMovie] = useState("");
     const urlBase = "https://image.tmdb.org/t/p/w300_and_h450_bestv2";
     
@@ -17,11 +16,10 @@ const DetailsMovie = () => {
       });
 
       getVideoMovie(filters.idMovie).then((response) => {
-          console.log(response.key);
-          setVideoMovie(response.key);
-          
+        console.log(response.key);
+        setVideoMovie(response.key);
       });
-    }, [filters.idMovie]);
+    }, [filters.idMovie, setMovieInfo]);
   return (
     <>
       {Object.entries(movieInfo).length && (
