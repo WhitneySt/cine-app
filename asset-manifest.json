@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cine-app/static/css/main.7dfb4d07.css",
+    "main.js": "/cine-app/static/js/main.311d0e13.js",
+    "index.html": "/cine-app/index.html",
+    "main.7dfb4d07.css.map": "/cine-app/static/css/main.7dfb4d07.css.map",
+    "main.311d0e13.js.map": "/cine-app/static/js/main.311d0e13.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7dfb4d07.css",
+    "static/js/main.311d0e13.js"
+  ]
+}
