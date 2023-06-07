@@ -102,7 +102,7 @@ const AppRouter = () => {
           }}
         >
           <Routes>
-            <Route path={"/"} element={<Layout />}>
+            <Route path={"/cine-app"} element={<Layout />}>
               <Route index element={<Home movieList={movies} />} />
               <Route path={":pelicula"} element={<DetalleFuncion />}>
                 <Route index element={<DetailsMovie />} />

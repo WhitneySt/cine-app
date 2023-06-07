@@ -4,7 +4,7 @@ import { compras } from "../../services/data";
 import { searchParamsContext } from "../../Routes/AppRouter";
 
 const SeleccionAsientos = () => {
-  const { filters, details, setDetails, movieInfo, tickets } =
+  const { filters, details, setDetails,  tickets } =
     useContext(searchParamsContext);
   
   const [selectedSeats, setSelectedSeats] = useState([]);
